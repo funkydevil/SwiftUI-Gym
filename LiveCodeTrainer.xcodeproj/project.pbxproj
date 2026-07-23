@@ -32,6 +32,8 @@
 		B00000000000000000000017 /* DedicatedSimulatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0000000000000000000001C /* DedicatedSimulatorManager.swift */; };
 		B00000000000000000000018 /* TrainerAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0000000000000000000001D /* TrainerAppDelegate.swift */; };
 		B00000000000000000000019 /* DedicatedSimulatorManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0000000000000000000001E /* DedicatedSimulatorManagerTests.swift */; };
+		B0000000000000000000001A /* SwiftSyntaxHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0000000000000000000001F /* SwiftSyntaxHighlighter.swift */; };
+		B0000000000000000000001B /* SwiftSyntaxHighlighterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000020 /* SwiftSyntaxHighlighterTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		C0000000000000000000001C /* DedicatedSimulatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DedicatedSimulatorManager.swift; sourceTree = "<group>"; };
 		C0000000000000000000001D /* TrainerAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerAppDelegate.swift; sourceTree = "<group>"; };
 		C0000000000000000000001E /* DedicatedSimulatorManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DedicatedSimulatorManagerTests.swift; sourceTree = "<group>"; };
+		C0000000000000000000001F /* SwiftSyntaxHighlighter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSyntaxHighlighter.swift; sourceTree = "<group>"; };
+		C00000000000000000000020 /* SwiftSyntaxHighlighterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSyntaxHighlighterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				C00000000000000000000001 /* CodeEditorView.swift */,
+				C0000000000000000000001F /* SwiftSyntaxHighlighter.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -215,6 +220,7 @@
 				C00000000000000000000015 /* CodeEvaluatorTests.swift */,
 				C00000000000000000000016 /* SimulatorRunnerTests.swift */,
 				C0000000000000000000001E /* DedicatedSimulatorManagerTests.swift */,
+				C00000000000000000000020 /* SwiftSyntaxHighlighterTests.swift */,
 			);
 			path = LiveCodeTrainerTests;
 			sourceTree = "<group>";
@@ -338,6 +344,7 @@
 				B00000000000000000000013 /* TrainerRootView.swift in Sources */,
 				B00000000000000000000017 /* DedicatedSimulatorManager.swift in Sources */,
 				B00000000000000000000018 /* TrainerAppDelegate.swift in Sources */,
+				B0000000000000000000001A /* SwiftSyntaxHighlighter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +356,7 @@
 				B00000000000000000000015 /* CodeEvaluatorTests.swift in Sources */,
 				B00000000000000000000016 /* SimulatorRunnerTests.swift in Sources */,
 				B00000000000000000000019 /* DedicatedSimulatorManagerTests.swift in Sources */,
+				B0000000000000000000001B /* SwiftSyntaxHighlighterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

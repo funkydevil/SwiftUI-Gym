@@ -57,7 +57,11 @@ struct CodeEditorView: NSViewRepresentable {
         scrollView.rulersVisible = true
         context.coordinator.rulerView = rulerView
 
-        applyAppearance(to: textView, in: scrollView)
+        applyAppearance(
+            to: textView,
+            in: scrollView,
+            coordinator: context.coordinator
+        )
         return scrollView
     }
 
@@ -79,10 +83,18 @@ struct CodeEditorView: NSViewRepresentable {
         }
 
         textView.isEditable = isEditable
-        applyAppearance(to: textView, in: scrollView)
+        applyAppearance(
+            to: textView,
+            in: scrollView,
+            coordinator: context.coordinator
+        )
     }
 
-    private func applyAppearance(to textView: NSTextView, in scrollView: NSScrollView) {
+    private func applyAppearance(
+        to textView: NSTextView,
+        in scrollView: NSScrollView,
+        coordinator: Coordinator
+    ) {
         let palette = EditorPalette(colorScheme: colorScheme)
         let font = NSFont.monospacedSystemFont(ofSize: fontSize, weight: .regular)
 
@@ -98,6 +110,8 @@ struct CodeEditorView: NSViewRepresentable {
             .font: font,
             .foregroundColor: palette.text
         ]
+        coordinator.configure(palette: palette, font: font)
+        coordinator.highlight(textView)
 
         scrollView.backgroundColor = palette.background
         scrollView.drawsBackground = true
@@ -112,8 +126,12 @@ struct CodeEditorView: NSViewRepresentable {
         }
     }
 
+    @MainActor
     final class Coordinator: NSObject, NSTextViewDelegate {
         private var text: Binding<String>
+        private var palette = EditorPalette(colorScheme: .light)
+        private var font = NSFont.monospacedSystemFont(ofSize: 14, weight: .regular)
+        private var isApplyingHighlighting = false
         fileprivate weak var rulerView: LineNumberRulerView?
 
         init(text: Binding<String>) {
@@ -126,7 +144,57 @@ struct CodeEditorView: NSViewRepresentable {
             }
 
             text.wrappedValue = textView.string
+            highlight(textView)
             rulerView?.invalidateLineNumbers()
+        }
+
+        fileprivate func configure(palette: EditorPalette, font: NSFont) {
+            self.palette = palette
+            self.font = font
+        }
+
+        fileprivate func highlight(_ textView: NSTextView) {
+            guard !isApplyingHighlighting,
+                  let storage = textView.textStorage
+            else {
+                return
+            }
+
+            isApplyingHighlighting = true
+            defer { isApplyingHighlighting = false }
+
+            let selection = textView.selectedRange()
+            let fullRange = NSRange(location: 0, length: storage.length)
+            let undoManager = textView.undoManager
+            undoManager?.disableUndoRegistration()
+            defer { undoManager?.enableUndoRegistration() }
+
+            storage.beginEditing()
+            storage.setAttributes(
+                [
+                    .font: font,
+                    .foregroundColor: palette.text
+                ],
+                range: fullRange
+            )
+            for token in SwiftSyntaxHighlighter.tokens(in: storage.string) {
+                storage.addAttribute(
+                    .foregroundColor,
+                    value: palette.color(for: token.kind),
+                    range: token.range
+                )
+            }
+            storage.endEditing()
+
+            let safeLocation = min(selection.location, storage.length)
+            let safeLength = min(selection.length, storage.length - safeLocation)
+            textView.setSelectedRange(
+                NSRange(location: safeLocation, length: safeLength)
+            )
+            textView.typingAttributes = [
+                .font: font,
+                .foregroundColor: palette.text
+            ]
         }
     }
 }
@@ -145,6 +213,14 @@ private struct EditorPalette {
     let text: NSColor
     let insertionPoint: NSColor
     let selection: NSColor
+    let keyword: NSColor
+    let type: NSColor
+    let string: NSColor
+    let number: NSColor
+    let comment: NSColor
+    let attribute: NSColor
+    let directive: NSColor
+    let operatorSymbol: NSColor
 
     init(colorScheme: ColorScheme) {
         switch colorScheme {
@@ -156,6 +232,14 @@ private struct EditorPalette {
             text = NSColor(srgbRed: 0.88, green: 0.90, blue: 0.94, alpha: 1)
             insertionPoint = .white
             selection = NSColor.systemBlue.withAlphaComponent(0.42)
+            keyword = NSColor(srgbRed: 0.96, green: 0.48, blue: 0.73, alpha: 1)
+            type = NSColor(srgbRed: 0.40, green: 0.82, blue: 0.90, alpha: 1)
+            string = NSColor(srgbRed: 0.95, green: 0.64, blue: 0.48, alpha: 1)
+            number = NSColor(srgbRed: 0.76, green: 0.67, blue: 0.98, alpha: 1)
+            comment = NSColor(srgbRed: 0.46, green: 0.66, blue: 0.48, alpha: 1)
+            attribute = NSColor(srgbRed: 0.95, green: 0.75, blue: 0.36, alpha: 1)
+            directive = NSColor(srgbRed: 0.77, green: 0.57, blue: 0.94, alpha: 1)
+            operatorSymbol = NSColor(srgbRed: 0.60, green: 0.72, blue: 0.94, alpha: 1)
         default:
             background = NSColor(srgbRed: 0.985, green: 0.985, blue: 0.99, alpha: 1)
             gutterBackground = NSColor(srgbRed: 0.95, green: 0.955, blue: 0.965, alpha: 1)
@@ -164,6 +248,27 @@ private struct EditorPalette {
             text = NSColor.labelColor
             insertionPoint = NSColor.textColor
             selection = NSColor.selectedTextBackgroundColor
+            keyword = NSColor(srgbRed: 0.68, green: 0.13, blue: 0.48, alpha: 1)
+            type = NSColor(srgbRed: 0.04, green: 0.46, blue: 0.53, alpha: 1)
+            string = NSColor(srgbRed: 0.76, green: 0.20, blue: 0.09, alpha: 1)
+            number = NSColor(srgbRed: 0.34, green: 0.23, blue: 0.72, alpha: 1)
+            comment = NSColor(srgbRed: 0.18, green: 0.48, blue: 0.20, alpha: 1)
+            attribute = NSColor(srgbRed: 0.66, green: 0.38, blue: 0.02, alpha: 1)
+            directive = NSColor(srgbRed: 0.49, green: 0.24, blue: 0.66, alpha: 1)
+            operatorSymbol = NSColor(srgbRed: 0.16, green: 0.33, blue: 0.62, alpha: 1)
+        }
+    }
+
+    func color(for kind: SwiftSyntaxKind) -> NSColor {
+        switch kind {
+        case .keyword: keyword
+        case .type: type
+        case .string: string
+        case .number: number
+        case .comment: comment
+        case .attribute: attribute
+        case .directive: directive
+        case .operatorSymbol: operatorSymbol
         }
     }
 }
