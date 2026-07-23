@@ -73,7 +73,7 @@
 		C00000000000000000000017 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		C00000000000000000000018 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C00000000000000000000019 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C0000000000000000000001A /* LiveCodeTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveCodeTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0000000000000000000001A /* SwiftUI Gym.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI Gym.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0000000000000000000001B /* LiveCodeTrainerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiveCodeTrainerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0000000000000000000001C /* DedicatedSimulatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DedicatedSimulatorManager.swift; sourceTree = "<group>"; };
 		C0000000000000000000001D /* TrainerAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerAppDelegate.swift; sourceTree = "<group>"; };
@@ -201,7 +201,7 @@
 		D0000000000000000000000A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C0000000000000000000001A /* LiveCodeTrainer.app */,
+				C0000000000000000000001A /* SwiftUI Gym.app */,
 				C0000000000000000000001B /* LiveCodeTrainerTests.xctest */,
 			);
 			name = Products;
@@ -245,7 +245,7 @@
 			);
 			name = LiveCodeTrainer;
 			productName = LiveCodeTrainer;
-			productReference = C0000000000000000000001A /* LiveCodeTrainer.app */;
+			productReference = C0000000000000000000001A /* SwiftUI Gym.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E00000000000000000000002 /* LiveCodeTrainerTests */ = {
@@ -486,6 +486,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = NO;
+				EXECUTABLE_NAME = LiveCodeTrainer;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Packaging/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -495,7 +496,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.funkydevil.livecodetrainer;
 				PRODUCT_MODULE_NAME = LiveCodeTrainer;
-				PRODUCT_NAME = LiveCodeTrainer;
+				PRODUCT_NAME = "SwiftUI Gym";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
@@ -511,6 +512,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = NO;
+				EXECUTABLE_NAME = LiveCodeTrainer;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Packaging/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -520,7 +522,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.funkydevil.livecodetrainer;
 				PRODUCT_MODULE_NAME = LiveCodeTrainer;
-				PRODUCT_NAME = LiveCodeTrainer;
+				PRODUCT_NAME = "SwiftUI Gym";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
@@ -539,7 +541,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LiveCodeTrainer.app/Contents/MacOS/LiveCodeTrainer";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftUI Gym.app/Contents/MacOS/LiveCodeTrainer";
 			};
 			name = Debug;
 		};
@@ -555,7 +557,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LiveCodeTrainer.app/Contents/MacOS/LiveCodeTrainer";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftUI Gym.app/Contents/MacOS/LiveCodeTrainer";
 			};
 			name = Release;
 		};

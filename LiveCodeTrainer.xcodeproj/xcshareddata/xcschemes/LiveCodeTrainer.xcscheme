@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E00000000000000000000001"
-               BuildableName = "LiveCodeTrainer.app"
+               BuildableName = "SwiftUI Gym.app"
                BlueprintName = "LiveCodeTrainer"
                ReferencedContainer = "container:LiveCodeTrainer.xcodeproj">
             </BuildableReference>
@@ -72,7 +72,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E00000000000000000000001"
-            BuildableName = "LiveCodeTrainer.app"
+            BuildableName = "SwiftUI Gym.app"
             BlueprintName = "LiveCodeTrainer"
             ReferencedContainer = "container:LiveCodeTrainer.xcodeproj">
          </BuildableReference>
@@ -89,7 +89,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E00000000000000000000001"
-            BuildableName = "LiveCodeTrainer.app"
+            BuildableName = "SwiftUI Gym.app"
             BlueprintName = "LiveCodeTrainer"
             ReferencedContainer = "container:LiveCodeTrainer.xcodeproj">
          </BuildableReference>
