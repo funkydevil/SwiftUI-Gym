@@ -1,5 +1,7 @@
 # SwiftUI Gym
 
+<img src="Packaging/AppIcon.png" alt="SwiftUI Gym app icon" width="128">
+
 A native macOS live-coding trainer for practicing SwiftUI interview tasks.
 
 ## Included in the MVP

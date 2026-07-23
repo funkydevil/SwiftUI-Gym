@@ -10,6 +10,8 @@
     <string>com.funkydevil.livecodetrainer</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
+    <key>CFBundleIconName</key>
+    <string>AppIcon</string>
     <key>CFBundleName</key>
     <string>SwiftUI Gym</string>
     <key>CFBundlePackageType</key>
